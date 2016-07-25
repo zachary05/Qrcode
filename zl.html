@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>QRplace</title>
+    <script type='text/javascript' src='http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js'></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+    <style media="screen">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        html,
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-image: -webkit-linear-gradient(rgb(255, 255, 255), 50%, rgba(159, 249, 241, 0.57));
+            background-image: -o-linear-gradient(rgb(255, 255, 255), 50%, rgba(159, 249, 241, 0.57));
+            background-image: linear-gradient(rgb(255, 255, 255), 50%, rgba(159, 249, 241, 0.57));
+        }
+        #zlinput {
+            display: block;
+            width: 236px;
+            height: 50px;
+            position: relative;
+            top: 130px;
+            margin-left: auto;
+            margin-right: auto;
+            border-top: none;
+            border-Left: none;
+            border-right: none;
+            border-bottom: 3px solid #33ced7;
+            color: #CCC;
+            font-style: italic;
+            font-weight: 100;
+            font-size: 20px;
+            transition: all .3s;
+            background-color: transparent;
+        }
+        #zlinput:active,
+        #zlinput:focus {
+            color: #333;
+            font-style: normal;
+            outline: none;
+            border-top: none;
+            border-Left: none;
+            border-right: none;
+            border-bottom: 3px solid #242a81;
+        }
+        #QRplace {
+            position: relative;
+            top: 30%;
+            width: 256px;
+            height: 256px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        a {
+          display: inline-block;
+          text-decoration: none;
+          text-transform: uppercase;
+          margin-top: 20px;
+          background-color: #ccc;
+          color: #fff;
+          border-radius: 5px;
+          padding: 20px 40px;
+          font-size: 18px;
+          transition: 400ms ease all;
+        }
+        a:hover {
+          background-color: #3dced2;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="zlinput" class="zlinput" placeholder="Input here, have fun!">
+    <div class="QRplace" id="QRplace">
+    </div>
+    <script type="text/javascript">
+        $('.QRplace').qrcode({
+            render: 'image',
+            minVersion: 1,
+            maxVersion: 40,
+            ecLevel: 'L',
+            size: 300,
+            fill: '#000',
+            background: null,
+            text: 'http://zacharyzl.xyz',
+            mode: 0,
+            mSize: 0.1,
+            label: 'no label',
+        });
+        $('.zlinput').keypress(function() {
+            var input = $(".zlinput").val();
+            $(".QRplace table").remove();
+            $(".QRplace").qrcode({
+                render: 'image',
+                minVersion: 1,
+                maxVersion: 40,
+                ecLevel: 'L',
+                size: 300,
+                fill: '#000',
+                background: null,
+                text: input,
+                mode: 0,
+                mSize: 0.1,
+                label: 'no label',
+                fontname: 'sans',
+                fontcolor: '#000',
+                image: null
+            })
+        })
+    </script>
+</body>
+
+</html>
